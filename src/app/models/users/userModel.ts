@@ -35,16 +35,16 @@ export class UserModel extends BaseModel implements IUser {
         return ['secret_key', 'public_key', 'url_id', 'wallet_id']
     }
 
-    static get relationMappings (): RelationMappings {
-        return {
-            business: {
-                relation: BaseModel.HasManyRelation,
-                modelClass: '../businesses',
-                join: {
-                    from: `${Schema.gopai}.${Table.users}.id`,
-                    to: `${Schema.gopai}.${Table.business}.user_id`
-                }
-            }
-        }
-    }
+    // static get relationMappings (): RelationMappings {
+    //     return {
+    //         business: {
+    //             relation: BaseModel.HasManyRelation,
+    //             modelClass: '../businesses',
+    //             join: {
+    //                 from: `${Schema.gopai}.${Table.users}.id`,
+    //                 to: `${Schema.gopai}.${Table.business}.user_id`
+    //             }
+    //         }
+    //     }
+    // }
 }

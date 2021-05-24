@@ -20,8 +20,10 @@ export class UserController extends BaseController {
     public async register(@request() req: Request, @response() res: Response){
         try{
             const user: IUser = await this.userService.registerUser(req.body)
+            console.log('========', user)
             this.success(res, user, 'User created successfully', HttpStatusCode.CREATED)
         }catch(e){
+            console.log(e)
             this.error(res, e)
         }
     }

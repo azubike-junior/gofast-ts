@@ -33,16 +33,16 @@ export class BusinessModel extends BaseModel implements IBusiness {
         return ['user_id']
     }
 
-    static get relationMappings(): RelationMappings {
-        return {
-            user: {
-                relation: BaseModel.BelongsToOneRelation,
-                modelClass: '../users',
-                join: {
-                    from: `${Schema.gopai}.${Table.business}.user_id`,
-                    to: `${Schema.gopai}.${Table.users}.id`
-                }
-            }
-        }
-    }
+    // static get relationMappings(): RelationMappings {
+    //     return {
+    //         user: {
+    //             relation: BaseModel.BelongsToOneRelation,
+    //             modelClass: '../users',
+    //             join: {
+    //                 from: `${Schema.gopai}.${Table.business}.user_id`,
+    //                 to: `${Schema.gopai}.${Table.users}.id`
+    //             }
+    //         }
+    //     }
+    // }
 }

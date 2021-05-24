@@ -38,11 +38,14 @@ export class ApikeyService {
             }
             const {publicKey, privateKey} = generateKeyPairSync('rsa', options)
 
+            console.log(publicKey, privateKey)
+
             return {
                 publicKey: _.trim(publicKey),
                 privateKey: _.trim(privateKey)
             }
         }catch(e){
+            console.log("===========error from apiService key")
             if (typeof e.code === 'string' || !e.code) {
                 e.code = HttpStatusCode.INTERNAL_SERVER_ERROR;
             }
@@ -91,11 +94,16 @@ export class ApikeyService {
                 passphrase: this.env.crypto_key_pair_secret
             };
 
+            console.log('======privateKeyInput', privateKeyInput)
+
             const signature = sign(this.cryptoKeyPairAlgorithm, Buffer.from(dataToSign), privateKeyInput)
                 .toString('hex');
             const encryptedUserId = this.encryptUserId(dataToSign, publicKey);
 
+            console.log('====signature', signature, encryptedUserId)
+
             return _.trim(`${signature}.${encryptedUserId}`);
+
             } catch (e) {
             if (typeof e.code === 'string' || !e.code) {
                 e.code = HttpStatusCode.INTERNAL_SERVER_ERROR;

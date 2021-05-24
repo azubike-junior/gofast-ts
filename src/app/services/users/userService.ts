@@ -20,6 +20,7 @@ export class UserService {
 
             //generate and sign key
             const {publicKey:public_key, privateKey:secret_key} = this.apiKeyService.generateKeyPair();
+       
             const api_key = this.apiKeyService.signApiKey(userId, secret_key, public_key)
 
             const user: IUser | any = {
@@ -31,7 +32,11 @@ export class UserService {
                 id: userId
             }
 
+            console.log('======user', user)
+
             let existingUser: IUser = await this.userRepo.findOne({email: data.email});
+
+            console.log('===== existing,', existingUser)
             if(existingUser) {
                 throwError(`User with the email: ${data.email} already exist!`, error.badRequest )
             }

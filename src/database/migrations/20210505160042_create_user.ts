@@ -77,15 +77,7 @@ export async function up(knex: Knex): Promise<void> {
                   .timestamps(true, true);
 
 
-                // Foreign Key Constraints
-                // tableBuilder
-                //   .foreign('url_id')
-                //   .references('id')
-                //   .inTable(`${Schema.gopai}.${Table.urls}`);
-                // tableBuilder
-                //   .foreign('wallet_id')
-                //   .references('id')
-                //   .inTable(`${Schema.gopai}.${Table.wallets}`);
+                // Foreign Key Constraint
               });
           }
         }))
@@ -94,6 +86,6 @@ export async function up(knex: Knex): Promise<void> {
 
 
 export async function down(knex: Knex): Promise<void> {
-  return knex.schema.withSchema(Schema.gopai).dropTableIfExists(Table.users);
+  return knex.schema.withSchema(Schema.gopai).dropTableIfExists(Table.users)
 }
 

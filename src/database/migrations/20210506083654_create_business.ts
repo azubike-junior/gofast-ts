@@ -67,7 +67,7 @@ export async function up(knex: Knex): Promise<void> {
       .catch((e) => console.error('MIGRATION_ERROR', e)));
 }
 
-
 export async function down(knex: Knex): Promise<void> {
+   return knex.schema.withSchema(Schema.gopai).dropTableIfExists(Table.business)
 }
 
